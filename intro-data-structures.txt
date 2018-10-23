@@ -1,0 +1,43 @@
+####INTRO TO DATA STRUCTURES
+
+1. 	a) Use an array input: ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+
+	var peopleWaiting = [
+	  	"Vivian", 
+		"Ava", 
+		"Josh", 
+		"Patrick",
+		"Mike"
+	    ];
+	
+	b) Insert a new person, "Mary" at the end of the line. In other words, you should 	insert Mary after Mike.
+		
+		ANSWER: peopleWaiting.push("Mary");
+
+	c)  Find a person in line named "Josh." This function should return the position 	of 2 in the array, (recall that arrays are 0-based).
+
+		ANSWER: peopleWaiting.indexOf("Josh"); 
+
+	d) Find a person in line named "Emily." What should your function return if it 		does not find the item in the array?
+
+		ANSWER: peopleWaiting.indexOf("Emily");
+			--Return value of -1 if search value does not occur
+
+	e)  What if Ava wants to allow a friend, "Melissa", to cut in line in front of  	her? How would you code this so Melissa appears before Ava?
+
+		ANSWER: peopleWaiting.splice(1, 0, "Melissa");
+
+	f)  If Patrick wants to leave the line, how would you delete him from the array?
+
+		ANSWER: peopleWaiting.splice(4, 1);
+
+2. Provide another real-world example that you can model using a data structure.
+
+		ANSWER: The hotel industry by adding or reducing the rooms that are 				available on any given day. 
+
+3.  How would your data structure allow developers to access and manipulate the data?
+
+		ANSWER:  Developers would be able to access and manipulate the data 				structure by determining the specific value of the elements 				contained in the database.  
+
+	
