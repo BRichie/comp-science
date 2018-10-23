@@ -50,8 +50,7 @@
 		 INIT empty stack
    		 	FOR each element in the queue
 				IF element is equal length minus one push to empty stack
-				ELSE
-					leave elements in array
+				
 				END IF
 			END FOR
 		END FUNCTION
