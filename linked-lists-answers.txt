@@ -68,27 +68,24 @@
    	 return;
 	}
 
-  	var num1;
+  	var num1;  //reduced variables from 3 to 2.  Head and tail needed only
   	var num2;
-  	var num3;
-  	var value;
-  	num2 = this.head;
+	var nodes = {};   // added variable to store element's data
+  	
+	num1 = this.head;
+	num2 = num1.next;
+	nodes[p1.data] = true;
 
  	while (num2) {
-    		value = num2.data;
-    		num1 = num2;
-     		num3 = num1.next;
-
- 	while (num3) {
-      		if (num3.data === value) {
-          		num1.next = num3.next;
-      		} else {
-        		num1 = num3;
-     		}
-        		num3 = num3.next;
-       		}
-
-        		num2 = num2.next;
+    		var data = num2.data;
+    		if (nodes[data] {
+			num1.next = num2.next;
+		} else {
+			nodes[data] = true;
+				num1 = num2;
+			}
+        		
+		num2 = num2.next;
      	    }
   	};
 
