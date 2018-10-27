@@ -57,39 +57,75 @@
 	ANSWER:
 	
 
-	function LinkedList() {
-		this.head = null;
-		
-	}
+	class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
 
-	LinkedList.prototype.removeDuplicates = function() {
-  		if (!this.head || !this.head.next) {
-    	console.log("No Duplicates");
-   	 return;
-	}
+class LinkedList {
+  constructor() {
+    this.head = null
+  }
 
-  	var num1;  //reduced variables from 3 to 2.  Head and tail needed only
-  	var num2;
-	var nodes = {};   // added variable to store element's data
-  	
-	num1 = this.head;
-	num2 = num1.next;
-	nodes[p1.data] = true;
+  add(value) {
+    let addNode = new Node(value)
+    if (!this.head) {
+      this.head = addNode
+      return this
+    }
+    let currentNode = this.head
+    while (currentNode.next) {
+      currentNode = currentNode.next
+    }
+    currentNode.next = addNode
+    return this
+  }
 
- 	while (num2) {
-    		var data = num2.data;
-    		if (nodes[data] {
-			num1.next = num2.next;
-		} else {
-			nodes[data] = true;
-				num1 = num2;
-			}
-        		
-		num2 = num2.next;
-     	    }
-  	};
+  showList() {					//showList function added to check status of doubles
+    let list = ''
+    let current = this.head
+    while (current.next) {
+      list += current.value + " , "
+      current = current.next;
+    }
+    list += current.value
+    console.log(list)
+  }
+}
 
 
+function removeDuplicates(newList) {
+  let nodes = {}
+  let currentNode = newList.head
+  let previous = currentNode
+  while (currentNode) {
+    if (!nodes[currentNode.value]) {
+      nodes[currentNode.value] = 1
+      previous = currentNode
+      currentNode = currentNode.next
+    } else {
+      previous.next = currentNode.next
+      currentNode = currentNode.next
+    }
+  }
+  
+  return newList;
+}
+
+
+let newList = new LinkedList()
+newList.add(7);
+newList.add(6);
+newList.add(2);
+newList.add(23);
+newList.add(5);
+newList.add(5);
+newList.add(5);
+newList.add(3);
+newList.add(11);
+newList.add(3);
 
 	
 5. Given an unsorted singly linked list, reverse it.
