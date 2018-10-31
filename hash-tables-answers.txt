@@ -1,0 +1,324 @@
+1. What is a hash table?
+	ANSWER: A hash table is a data structure that stores every VALUE by pairing it with an identifier KEY. 
+
+2. What is hashing?
+	ANSWER: Hashing is the process of converting a STRING to a numerical index or a hash code
+
+3. How does a hash table store data?
+	ANSWER: Hash tables store data by placing the key/value pairs in an array managed internally by the hash table. 
+
+
+4. How are hash tables and objects different?
+	ANSWER:
+		
+5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
+	* A list of pets and their unique names.
+		
+		ANSWER: hash table
+	
+	* The name, age, and the birthday of your best friend.
+		
+		ANSWER: object
+	
+	* The name and location of every company in a given city.
+	
+		ANSWER: hash table
+
+	* All of the books checked out from a library by a particular individual.
+		
+		ANSWER: hash table
+	
+	* The primary and secondary phone numbers for a contact.
+		
+		ANSWER: object
+
+
+6. Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+	
+	ANSWER:
+		function HashTable(size) {
+  			this.buckets = Array(size);
+  			this.bucketAmount = this.buckets.length;
+			}
+
+		function HashNode(key, value, next) {
+  			this.key = key;
+  			this.value = value;
+  			this.next = next || null;
+			}
+
+
+		HashTable.prototype.hash = function (key) {
+  			var total = 0;
+  			for (var i = 0; i < key.length; i++) {
+    				total += key.charCodeAt(i);
+  			}
+  		var bucket = total % this.bucketAmount;
+  			return bucket;
+		}
+
+
+		HashTable.prototype.insert = function (key, value) {
+  		var index = this.hash(key);
+  			if (!this.buckets[index]) {
+    				this.buckets[index] = new HashNode(key, value);
+  			} else if (this.buckets[index].key === key) {
+    				this.buckets[index].value = value;
+    					return;
+ 		 	} else {
+    				var currentNode = this.buckets[index];
+    				while (currentNode.next) {
+     					 if (currentNode.key === key) {
+       					 currentNode.value = value;
+        				return;
+      			}
+      			if (currentNode.next.key === key) {
+      				currentNode.next.value = value;
+        			return;
+     			 }
+     			 currentNode = currentNode.next;
+   		 	 }
+    				currentNode.next = new HashNode(key, value);
+  		}
+	}
+
+
+			HashTable.prototype.get = function (key) {
+  			var index = this.hash(key);
+  			if (!this.buckets[index]) return null;
+  			else {
+    				var currentNode = this.buckets[index];
+    			while (currentNode) {
+     	 		if (currentNode.key === key) return currentNode.value;
+      				currentNode = currentNode.next;
+    			}
+  		}
+  			return null;
+	}
+
+
+
+		HashTable.prototype.retrieveAll = function () {
+ 	 	var bucketList = [];
+  		for (var i = 0; i < this.bucketAmount; i++) {
+    			currentNode = this.buckets[i];
+    		while (currentNode) {
+      			bucketList.push(currentNode);
+      		currentNode = currentNode.next;
+    			}
+  		}
+  			return bucketList;
+}
+
+
+
+var customerInfo = new HashTable(30);
+customerInfo.insert(2121234567, " Tom : 5th Avenue, NY, NY");
+customerInfo.insert(3109878765, "Dave : Main Street, Los Anegeles, CA");
+customerInfo.insert(3034567789, "Corey : Pearl Street, Boulder, CO");
+customerInfo.insert(2067897887, "Steve : Capitol Hill, Seattle, WA");
+
+
+
+
+7. Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+
+	ANSWER:
+
+function HashTable(size) {
+  this.buckets = Array(size);
+  this.bucketAmount = this.buckets.length;
+  this.storage = new Array(this.buckets)
+}
+
+function HashNode(key, value, next) {
+  this.key = key;
+  this.value = value;
+  this.next = null;
+}
+
+HashTable.prototype.hash = function (key) {
+  var total = 0;
+  for (var i = 0; i < key.length; i++) {
+    total += key.charCodeAt(i);
+  }
+  var bucket = total % this.bucketAmount;
+  return bucket;
+}
+
+HashTable.prototype.insert = function (key, value) {
+  var index = this.hash(key);
+  if (!this.buckets[index]) {
+    this.buckets[index] = new HashNode(key, value);
+  }
+  else if (this.buckets[index].key === key) {
+    this.buckets[index].value = value;
+    return;
+  } else {
+    var currentNode = this.buckets[index];
+    while (currentNode.next) {
+      if (currentNode.key === key) {
+        currentNode.value = value;
+        return;
+      }
+      if (currentNode.next.key === key) {
+        currentNode.next.value = value;
+        return;
+      }
+      currentNode = currentNode.next;
+    }
+    currentNode.next = new HashNode(key, value);
+  }
+}
+
+HashTable.prototype.remove = function (key){
+	for (var i = 0; i < this.bucketAmount.length; i++){
+		if (key == this.bucketAmount[i]){
+			
+			this.buckets[this.bucketAmount[i]] = null;
+			this.bucketAmount.splice(i ,1);
+			return;
+		}
+	}
+}
+
+
+HashTable.prototype.get = function (key) {
+  var index = this.hash(key);
+  if (!this.buckets[index]) return null;
+  else {
+    var currentNode = this.buckets[index];
+    while (currentNode) {
+      if (currentNode.key === key) return currentNode.value;
+      currentNode = currentNode.next;
+    }
+  }
+  return null;
+};
+
+HashTable.prototype.retrieveAll = function () {
+  var bucketList = [];
+
+  for (var i = 0; i < this.bucketAmount; i++) {
+    currentNode = this.buckets[i];
+    while (currentNode) {
+      bucketList.push(currentNode);
+      currentNode = currentNode.next;
+    }
+  }
+  return bucketList;
+}
+
+
+
+var inventoryTracking = new HashTable(1000);
+inventoryTracking.insert (34567, "Jack Daniels", '$23.99');
+inventoryTracking.insert (2389899, "Jim Beam" ,'$19.99');
+inventoryTracking.insert (123567, "Space Dust IPA" , '$12.99');
+inventoryTracking.remove (19009, "Pappy Van Winkle 23 yr" , '$5000');
+inventoryTracking.insert (909879, "Miller High Life" , '$8.99');
+inventoryTracking.insert (3400, "Stone IPA" , '$13.99');
+
+console.log(inventoryTracking.retrieveAll());
+
+
+
+8. Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+	ANSWER:
+
+function HashTable(size) {
+  this.buckets = Array(size);
+  this.bucketAmount = this.buckets.length;
+  this.storage = new Array(this.buckets)
+}
+
+function HashNode(key, value, next) {
+  this.key = key;
+  this.value = value;
+  this.next = null;
+}
+
+HashTable.prototype.hash = function (key) {
+  var total = 0;
+  for (var i = 0; i < key.length; i++) {
+    total += key.charCodeAt(i);
+  }
+  var bucket = total % this.bucketAmount;
+  return bucket;
+}
+
+HashTable.prototype.insert = function (key, value) {
+  var index = this.hash(key);
+  if (!this.buckets[index]) {
+    this.buckets[index] = new HashNode(key, value);
+  }
+  else if (this.buckets[index].key === key) {
+    this.buckets[index].value = value;
+    return;
+  } else {
+    var currentNode = this.buckets[index];
+    while (currentNode.next) {
+      if (currentNode.key === key) {
+        currentNode.value = value;
+        return;
+      }
+      if (currentNode.next.key === key) {
+        currentNode.next.value = value;
+        return;
+      }
+      currentNode = currentNode.next;
+    }
+    currentNode.next = new HashNode(key, value);
+  }
+}
+
+HashTable.prototype.remove = function (key){
+	for (var i = 0; i < this.bucketAmount.length; i++){
+		if (key == this.bucketAmount[i]){
+			
+			this.buckets[this.bucketAmount[i]] = null;
+			this.bucketAmount.splice(i ,1);
+			return;
+		}
+	}
+}
+
+
+HashTable.prototype.get = function (key, value) {
+  var index = this.hash(key);
+  if (!this.buckets[index]) return null;
+  else {}
+    var currentNode = this.buckets[index];
+    while (currentNode) {
+      if (currentNode.key === key || currentNode.value === value) return currentNode.value;
+      currentNode = currentNode.next;
+    }
+  
+  return null;
+};
+
+HashTable.prototype.retrieveAll = function () {
+  var bucketList = [];
+
+  for (var i = 0; i < this.bucketAmount; i++) {
+    currentNode = this.buckets[i];
+    while (currentNode) {
+      bucketList.push(currentNode);
+      currentNode = currentNode.next;
+    }
+  }
+  return bucketList;
+}
+
+
+
+var newspapers = new HashTable(1000);
+newspapers.insert ("Time", "1982");
+newspapers.insert ("Newsweek", "2012");
+newspapers.insert ("The Los Angeles Times", "1999");
+
+
+console.log(newspapers.get("Time"));
+
+
