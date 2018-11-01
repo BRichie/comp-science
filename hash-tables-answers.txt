@@ -1,6 +1,6 @@
 1. What is a hash table?
 	ANSWER: A hash table is a data structure that stores every VALUE by pairing it with an identifier KEY. 
-
+/Users/brandonrichie/bloc/comp-science/hash-tables-answers.txt
 2. What is hashing?
 	ANSWER: Hashing is the process of converting a STRING to a numerical index or a hash code
 
@@ -9,7 +9,7 @@
 
 
 4. How are hash tables and objects different?
-	ANSWER:
+	ANSWER:	Objects and Hash Tables are very similar and they differ in the way that an object is a single object with type and value, but a hash table is a structure that stores objects and is able map the keys and values. 
 		
 5. Determine whether you would use a hash table or an object to store each of the following pieces of data:
 	* A list of pets and their unique names.
