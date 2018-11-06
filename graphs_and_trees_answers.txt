@@ -1,0 +1,210 @@
+####Graphs and Trees Questions
+
+1) What is a binary tree and what makes it unique to other trees?
+
+	ANSWER:  A hierarchal data structure containing nodes, each node may have up to 2 children (left child and right child)
+
+
+2) What is a heuristic?
+
+	ANSWER: a problem solving technique for solving problems faster than classic methods.  Engineers trade completeness, accuracy or precision for speed.    
+
+3) What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+	ANSWER: scanning your computer for malware or virus'
+
+4) What is the difference between a depth-first search and a breadth-first search?
+
+	ANSWER: In DFS starts searching the tree at the root and continues down one branch until its end and then back tracks to the next available branch.  BFS starts searching the tree 		structure at the root and then moves to the neighbor nodes on the same level, like a floor by floor sweep.  
+
+5) Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+	ANSWER: An undirected, a-cyclic, unweighted graph contains Nodes without a designation for the cost of traversing between them, that are connected without a designated start or end, and the Nodes do not for a loop so when you reach the last Node it's the end of the line.   
+
+6) What kind of graph is a binary search tree?
+
+	ANSWER: A binary search tree is an undirected, a-cyclic and unweighted graph. 
+
+####PROGRAMMING
+
+7) Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+
+	Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+	ANSWER: 
+	* Determine the value of the node you wish to search. Write a function that takes one argument.    Start with the root value and and compare it to the number we are searching. If the number 	is less than the root the search will continue down the left side until it searches all nodes and compares.  If number compared is greater than it will traverse the right side searching for 	the value until all branches have been searched.  If the number is found it will return true, else false. 
+
+	####CODE
+
+function Node(val){
+  this.value = val;
+  this.left = null;
+  this.right = null;
+}
+
+function BinarySearchTree(){
+  this.root = null;
+}
+
+BinarySearchTree.prototype.push = function(val){
+  var root = this.root;
+
+  if(!root){
+    this.root = new Node(val);
+    return;
+  }
+
+  var currentNode = root;
+  var newNode = new Node(val);
+
+  while(currentNode){
+    if(val < currentNode.value){
+        if(!currentNode.left){
+          currentNode.left = newNode;
+          break;
+        } else {
+          currentNode = currentNode.left;
+        }
+    } else {
+      if (!currentNode.right){
+        currentNode.right = newNode;
+        break;
+      } else {
+        currentNode = currentNode.right;
+      }
+    }
+  };
+
+  BinarySearchTree.prototype.getRoot = function(){
+    return this.root;
+  }
+    
+      BinarySearchTree.prototype.search = function(val) {
+  var currentNode = this.root;
+    while(currentNode){
+      if (val === currentNode.value){
+        return true;
+      }
+      if (val < currentNode.value){
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      }
+    }
+ }
+
+
+var newTree = new BinarySearchTree();
+newTree.push(21);
+newTree.push(45);
+newTree.push(111);
+newTree.push(78);
+newTree.push(34);
+newTree.push(24);
+newTree.push(23);
+newTree.push(25);
+
+
+	
+
+	
+
+8) Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+
+	Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
+
+	ANSWER: If you want to find the distance between two nodes you would need to find the Lowest Common Ancestor(LCA).  From there, you would need to find the distance for n1 to the LCA and n2 to 	the LCA.  Add up those two value and the sum equals the distance between the nodes. 
+
+function Node(value) {
+	 
+		this.value = value;
+		this.left = null;
+		this.right = null;
+}
+
+ function BinarySearchTree() { 
+		this.root = null;
+	}
+ 	BinarySearchTree.prototype.findNodeDistance = function (root, nodeOne, nodeTwo) {
+		var lowestCommonAncestor = this.findCommonAncestor(root, nodeOne, nodeTwo);
+		var nodeOneRootLength = this.ancesterCount(lowestCommonAncestor, nodeOne);
+		var nodeTwoRootLength
+     = this.ancesterCount(lowestCommonAncestor, nodeTwo);
+		var distanceRootToAncestor = this.ancesterCount(root, lowestCommonAncestor);
+		var totalDistance = (nodeOneRootLength + nodeTwoRootLength
+    ) - (2 * distanceRootToAncestor);
+		return ('Total distance is ' + totalDistance + ' between nodes ' + nodeOne + ' and ' + nodeTwo);
+
+	}
+ 	BinarySearchTree.prototype.findCommonAncestor = function (root, nodeOne, nodeTwo) {
+		if (!root) return;
+		var lowestCommonAncestor = root.value;
+		if (nodeOne === lowestCommonAncestor || nodeTwo === lowestCommonAncestor) {
+			return lowestCommonAncestor;
+		}
+		if (nodeOne < lowestCommonAncestor && nodeTwo < lowestCommonAncestor) {
+			return this.findCommonAncestor(root.left, nodeOne, nodeTwo);
+		}
+		if (nodeOne > lowestCommonAncestor && nodeTwo > lowestCommonAncestor) {
+			return this.findCommonAncestor(root.right, nodeOne, nodeTwo);
+		}
+		return lowestCommonAncestor;
+	}
+ 	BinarySearchTree.prototype.ancesterCount= function(root, value) {
+		let thisNode = this.root;
+		let nodeCount = 0;
+		while (thisNode) {
+			if (value === thisNode.value) {
+				return nodeCount;
+			}
+			thisNode = value < thisNode.value ? thisNode.left : thisNode.right;
+			nodeCount++;
+		}
+	}
+ 	BinarySearchTree.prototype.getRootNode = function() {
+		return this.root;
+	}
+ 	BinarySearchTree.prototype.push = function(value) {
+		var newNode = new Node(value);
+		if (this.root === null) {
+			this.root = newNode;
+			this.length++;
+		} else {
+			this.pushNode(this.root, newNode);
+		}
+	}
+ 	BinarySearchTree.prototype.pushNode = function (node, newNode) {
+		if (newNode.value < node.value) {
+			if (node.left === null) {
+				node.left = newNode;
+				this.length++;
+			} else {
+				this.pushNode(node.left, newNode);
+			}
+		} else {
+			if (node.right === null) {
+				node.right = newNode;
+				this.length++;
+			} else {
+				this.pushNode(node.right, newNode);
+			}
+		}
+	};
+
+
+var newTree = new BinarySearchTree();
+newTree.push(1);
+newTree.push(8);
+newTree.push(10);
+newTree.push(3);
+newTree.push(14);
+newTree.push(6);
+newTree.push(13);
+newTree.push(7);
+newTree.push(4);
+
+var root = newTree.getRootNode();
+
+console.log(newTree.findNodeDistance(root, 8, 1));
+
+
