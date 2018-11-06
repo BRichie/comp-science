@@ -1,0 +1,114 @@
+####QUESTIONS
+
+
+
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+*Making coffee:	
+	FUNCTION 
+	IF coffee machine unplugged
+		THEN plug machine in 
+	
+	IF coffee filter is not in machine
+		ADD filter
+	ELSE
+		ADD desired amount of coffee grounds to filter 
+	
+	IF water basin is empty
+		ADD specified amount of water to basin
+	
+		
+		WHILE coffee is dripping through filter
+			let process finish
+		
+		END WHILE
+	
+	END IF
+	END IF
+	END FUNCTION
+	
+	
+	
+		
+
+*Washing dishes:
+FUNCTION
+	IF dirty dishes are in sink 
+		plug drain
+		add soap 	
+		fill sink with hot water
+	ELSE 
+		relax
+	ENDIF
+
+	WHILE sink is not full
+		INCREMENT until sink full
+	END WHILE
+	
+	WHILE dirty dish amount is greater than zero
+		REPEAT  
+			soak dishes in soapy water
+			scrub dishes with sponge
+			rinse dishes with clean water
+			dry dishes with towel
+		UNTIL
+			dirty dishes equals zero 
+	END WHILE
+END FUNCTION
+			
+		
+
+*A choice of your own:
+
+PROGRAM make margarita
+	
+IF cup empty
+	add ice
+ENDIF
+
+	WHILE tequila needed
+		add two oz of tequila
+	ENDWHILE	
+
+	WHILE lime juice needed
+		add three oz of lime juice
+	ENDWHILE
+
+	WHILE triple sec needed
+		add half oz triple sec
+	END WHILE
+
+		IF blended preferred
+			add to blender
+		ELSE
+			use shaker tin
+		ENDIF
+		
+		IF salted rim wanted
+		add salt to rim
+		ELSE
+		drink margarita
+		ENDIFF
+END FUNCTION
+
+
+		
+
+	
+
+
+2.As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
+
+	ANSWER:
+	
+	COMPANY #1:  Society of American Baseball Research created an algorithm for baseball called "Sabermetrics."  This type of statistical analysis began in the 1940s when coaches stared 	to hire statisticians to evaluate player performance.  Researchers began to use ask specific questions based on in game situations, from on base percentage(OBP), runs-created, 	slugging percentage, secondary average, weighted on-base percentage, pitches thrown, number of each pitch thrown, earned runs(ERA) and winning-percentage. They have now been able to 	apply these stats and even predict game outcome for games and specific players, and these predictions are pretty accurate when applied in the long term.  This algorithm was always 	used in some fashion but it became the norm when Billy Beane successfully used Sabermetrics instead of his teams scouts to put together a winning team with a limited budget.  Two 	years later the Boston Red Sox won their first World Series using Beanes' model.  
+
+	COMPANY #2:  McDonalds:  McDonalds was one of the pioneers in the restaurant industry and still today is one of the most profitable and popular food choices for customers.  Their 	algorithm used to keep all their menu items consistent in each and every store around the globe is why it has survived generations.
+
+	COMPANY #3: DOORDASH:  The company is using the algorithm the designed for delivering food to customers to now deliver excess food to food banks.  What excess food once would have 	been thrown out at the end of the night will now be able to be donated to people in need.  Restaurants are able to contact the company and request pick up.  
+
+
+
+3.Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
+
+	ANSWER: An efficient algorithm will produce optimal results while maintaining cost efficiency and using the least minimal time.  
