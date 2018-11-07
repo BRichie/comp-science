@@ -77,4 +77,4 @@ function palindromeCheck(str) {
 
 console.log(palindromeCheck('evacanistabbatsinacave'));
 
-***GOOGLE**** exhibits the properties of recursion when you google recursion because it is teaching you subtly what recursion is, it is sending you in an infinite loop of sites, by clicking it the user is being recursive. I liked the analogy that recursion is like 2 mirrors facing each other. 
+7, GOOGLE exhibits the properties of recursion when you google recursion because it is teaching you subtly what recursion is, it is sending you in an infinite loop of sites, by clicking it the user is being recursive. I liked the analogy that recursion is like 2 mirrors facing each other. 
