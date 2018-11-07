@@ -1,0 +1,80 @@
+####QUESTIONS
+
+
+1. Define and compare recursion and iteration.
+
+	ANSWER: Recursive functions calls on itself to repeat the code.  An iterative function loops through parts of the code to repeat the specified part. In recursion we only define the terminating 	condition or base case, where iteration we define initialization, condition, execution and control variables.  Recursion is always applied to functions and iteration is applied to loops.  
+	Iteration is always faster than recursion, but recursion will reduce the size of the code and iteration increases the code length.  
+
+2. Name five algorithms that are commonly implemented by recursion.
+
+	ANSWER: 
+	*1* Factorial  
+	*2* Maximum 
+	*3* Fibonacci numbers  
+	*4* Binary Search 
+	*5* Merge-sort
+	 
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+	
+	ANSWER: You should use recursion when dealing with objects in a complex nested list structure.  The code is much simpler and takes a lot less time to write.  If speed is an issue you would avoid 	recursion as well as if the the stack was limited in size you would prefer iteration. 
+
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+
+	ANSWER: 
+	(a) Factorial:
+		>Similarities: each will fail at negative numbers so both have base case like variables to stop error from happening 
+		>Differences: Recursive - better for calculator factors and keeps track of only previous result, breaks up into smaller tasks and combines when task is done 
+			      Iteration - faster, keeps running log of results
+	(b) Maximum:
+		>Similarities: both use first number in array like a base case.  
+		>Differences: Iterative loops through array comparing all numbers with "currentMax" only replacing when it finds number higher in value.  Much cleaner solution.
+			      Recursive: calls each number removing it from the array until it reaches a lone item, this triggers a base case, it then calls for the previous number
+		 	      comparing those two values, keeping the larger, passing it back and comparing to the other values and sending the higher value back until it reaches the initial base
+			      case.  
+	(c) Fibonacci:
+		>Similarities: each keeps track recent numbers to complete square by adding.
+		>Differences: Iteration keeps track of only 2 most recent numbers and adding them together, then taking result and adding to the previous number. 
+			      Recursion: it uses three variables number, twoBack(2 less than the current number)  and oneBack ( 1 less than current number) next it adds them to return the result 	         
+
+5. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+	ANSWER:
+
+function findLength(arr){
+      var items =0;
+   for (var i=0; i <arr.length; i++){
+     if (typeof arr[i] === "object"){
+         items += findLength(arr[i]);
+     }else{ 
+       items++;
+     }
+   } 
+    return items;
+}
+console.log(findLength([12, 13, 33, 24, 577, 69, 666]))
+
+
+6. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+	ANSWER:
+
+function palindromeCheck(str) {
+    var strLen = str.length;
+    if (strLen === 0 || strLen === 1) {
+        return true;
+    }
+    
+    if (str[0] === str[strLen - 1]) {
+        return palindromeCheck( str.slice(1, strLen - 1) );
+    }
+    
+    return false;
+};
+
+console.log(palindromeCheck('evacanistabbatsinacave'));
+
+***GOOGLE**** exhibits the properties of recursion when you google recursion because it is teaching you subtly what recursion is, it is sending you in an infinite loop of sites, by clicking it the user is being recursive. I liked the analogy that recursion is like 2 mirrors facing each other. 
