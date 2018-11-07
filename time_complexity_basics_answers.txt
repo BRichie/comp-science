@@ -1,0 +1,79 @@
+####QUESTIONS
+
+
+1. What is time complexity and what is its relation to algorithms?
+
+	ANSWER: time complexity is the concept that deals with the valuation of the amount of time an algorithm or block of code will take to run as a function.  It relates to algorithms because it is 		essentially a way to organize algorithms by their performance 
+
+2. What is runtime?
+
+	ANSWER: runtime is the actual duration of time it takes for an algorithm to run
+
+3. How is the runtime of an algorithm calculated?
+
+	ANSWER: runtime of an algorithm is calculated by estimating how many operations the algorithm will perform and we then simplify the equation by dropping the constants. 
+
+4. Name the six types of algorithm growth rates we saw in this checkpoint and list them in order of most efficient to least efficient. Now Google another algorithmic growth rate not covered and place it in the correct spot in your list.
+
+	ANSWER:
+	*1* Constant Growth Rate - O(1)
+	*2* Logarithmic Growth Rate - O(log n)
+	*3* Linear Growth Rate - O(n)
+	*4* Log Linear Growth Rate - O(n log n)
+	*5* Quadratic Growth Rate - O(n^2)
+	*6* Exponential Growth Rate - O(2^n)
+	*7* Factorial Growth Rate - O(n!)
+
+
+5. Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
+
+	ANSWER: Exponential Growth Rate: Infectious disease(Zombie apocalypse) that is spread easily from person to person infecting everyone at an exponential rate.  
+
+6. Determine the time complexity of the following snippet of code. It is commonly known as a linear search.
+
+FUNCTION linearSearch(array, target)
+ FOR each number in the array
+   IF number = target THEN
+     RETURN true
+   END IF
+ END FOR
+ RETURN false
+END FUNCTION
+
+
+
+	ANSWER: 1 + n + n + n = 1 + 3n ---- O(n)
+
+7. Determine the time complexity of the following snippet of code.
+
+If you get stuck, read through the graphical representation section again.
+
+FUNCTION foo(array)
+ FOR each number in the array
+   FOR each number in the array
+     print "Hello"
+   END FOR
+ END FOR
+END FUNCTION
+
+	ANSWER:  0(n^2) --- Quadratic Growth Rate ( for loop in a for loop ) 
+
+8. Determine the time complexity of the following snippet of code. It is commonly known as the Fibonacci sequence.
+
+FUNCTION fibonacci(number)
+ IF number < 1 THEN
+   ERROR
+ ELSE IF number = 1 or 2 THEN
+   RETURN 1
+ ELSE
+   CALL fibonacci WITH number - 2 RETURNING twoBack 
+   CALL fibonacci WITH number - 1 RETURNING oneBack
+   RETURN twoBack + oneBack
+ END IF
+END FUNCTION
+
+	ANSWER: O(2^n) -- Exponential Growth Rate 
+
+9. Out of the code snippets you just saw, which is the most time efficient?
+
+	ANSWER:  Question #6 -- Linear Growth Rate is the most efficient of the 3
