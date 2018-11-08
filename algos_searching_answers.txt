@@ -1,0 +1,72 @@
+####SHORT ANSWER QUESTIONS
+
+1. What is a real-life scenario that uses linear search?
+
+	ANSWER: you forgot your friends hotel room number, you then would go door to door knocking until you find the room.
+
+2. What is a real-life scenario that uses binary search?
+
+	ANSWER: when looking for someone by their last name in the phone book.  If their last name is Jones, the person woundnt start at the beginning they would flip to the middle and keep narrowing 
+	the results down until they reached the "J" section. 
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+
+	ANSWER: 7 
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+
+	ANSWER: 3
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+	ANSWER:  Linear search because binary searches can only be utilized on an organized list.
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+
+	ANSWER:  Binary search because the linear search has the worst case time complexity at O(n), if you are searching for 1,000,000, the linear search will have to iterate one million times.  Binary 
+	search has the time complexity O(log n) and will split the sorted list in half at every iteration until target value is located. 
+
+####PROGRAMMING
+
+7. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+	ANSWER:
+function wordSearch(target, value){
+    var low  = 0;
+    var high = target.length - 1;
+    var middle = Math.floor((high + low)/2);
+ 
+    while(target[middle] != value && low < high){
+ 
+        if (value < target[middle]){
+            high = middle - 1;
+        } else if (value > target[middle]){
+            low = middle + 1;
+        }
+ 
+        middle = Math.floor((high + low)/2);
+    }
+ 
+    return (target[middle] != value) ? -1 : middle;
+};
+
+var target = ["aardvark", "albatross", "baboon", "bear", "chimpanzee", "crocodile", "crow", "deathshead moth", "eagle", "frog", "goat", "horse", "impala", "jackal", "kangaroo", ];
+console.log(wordSearch(target, "albatross"));  
+
+8. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+	ANSWER:
+
+
+function findFish(fishTank, target){
+  var fish = "white-spotted goldfish";
+  for(var i = 0; i < fishTank.length; i++){
+    if (fishTank[i] === target && target === fish){
+      return "Here's your fish kid!";
+    }
+  }
+  return "Almost got him, let me get a bigger net!";
+}
+var fishTank = ["shark", "turtle", "eel", "piranha", "white-spotted goldfish", "beta", "stingray"];
+console.log(findFish(fishTank, "white-spotted goldfish"));
+
