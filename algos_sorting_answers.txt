@@ -1,0 +1,76 @@
+####QUESTIONS
+
+1. Write pseudocode for bubble sort.
+
+ANSWER:
+
+FUNCTION bubblesort(array)
+	REPEAT
+		SET swapped to false
+
+	FOR i = FIRST INDEX of collection to LAST INDEX of collection minus one
+
+		IF collection[i] is greater than collection[i increment by one] THEN
+			SET temp to collection[i]
+			SET collection[i] to collection[i increment by one]
+			SET collection[i increment by one] to temp
+			SET swapped to TRUE
+		ENDIF
+	ENDFOR
+  UNTIL swapped is FALSE
+   
+   RETURN collection
+
+ENDFUNCTION
+
+
+2. Write pseudocode for quicksort.
+
+ANSWER:
+
+FUNCTION quicksort(array)
+	IF length of array is less than or equal to one
+		RETURN array 
+	ENDIF
+	ELSE
+		SET left to empty array
+		SET right to empty array
+		SET newArray to empty array
+		SET pivot to FIRST index in the array
+		SET length to length of array
+	ENDELSE
+	
+	FOR i = FIRST INDEX of collection to LAST INDEX of collection minus one
+		IF array[i] less than or equal to pivot
+			PUSH array[i] to left array
+		ELSE
+			PUSH array[i] to right array  
+		ENDIF
+	ENDFOR
+	
+	REPEAT quicksort function to right of pivot
+	REPEAT quicksort function to left of pivot
+		SET newArray to concat left, pivot, right
+	RETURN newArray
+
+ENDFUNCTION
+
+
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea of the efficiency of an algorithm. After looking at the pseudocode for the above sorting methods, identify why merge sort and quick sort are much more efficient than the others. Walking through each algorithm with a few sample collections may help.
+
+	ANSWER:
+**Quick sort algorithm is more effiecient because it is does in-place sorting, which means it no additional storage is needed to perform the sorting.  The divide and conquer method allows the 	   algorithm to quickly solve smaller problems and then combine them at the end Tests all show that on average it's time complexity takes O(n log n) and at its worst case O(n^2) but that is very 	   rare and usually avoided random pivot points. 
+	
+**Merge sort tends to do better with large data structures and has a complexity of O(n log n) as well.  It is a comparison based algorithm that sorts an unsorted array into 2 smaller sorted 		  arrays, and merging them when finished.   Merge sort is also considered a stable sort which means the order in equivalent elements is the same in both input and output.   Merge sort is also preferred fo linked lists because it has the ability to access data sequentially.   
+
+
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts. Research bucket sort and explain how it works. What is the ideal input for bucket sort?
+
+	ANSWER:
+**Bucket sort** 
+An algorithm that works by partitioning up the elements of an array into a "bucket" or "bin."  Each bucket will then have a different sorting algorithm or the recursively applied bucket sorting algorithm, the elements are then scattered into the buckets and sorted. It is considered a distribution sort that because of the way it arranges the elements in the buckets, and then merged in a second sorted list.  It is ideal when you have the elements distibuted evenly into the buckets
+
+
+
