@@ -58,6 +58,14 @@ JOIN c ON p.id = c.professor_id;
 		LEFT OUTER JOIN dogs
 		ON dogs.id = volunteers.foster_dog.id;
 
+	*RESULTS*
+first_name	last_name	name
+Rubeus		Hagrid		Munchkin
+Marjorie	Dursley		Marmaduke
+Sirius		Black		null
+Remus		Lupin		null
+Albus		Dumbledore	null
+
 > The cat's name, adopter's name, and adopted date for each cat adopted within the past month to be displayed as part of the "Happy Tail" social media promotion which posts recent successful adoptions.
 
 	ANSWER: SELECT cats.name, adopters.first_name, adopters.last_name, cat_adoptions.date	
@@ -66,6 +74,12 @@ JOIN c ON p.id = c.professor_id;
 		RIGHT OUTER JOIN adopters ON adopters.id = cat_adoptions.adopter_id
 		WHERE cat_adoptions.date <= 30;
 
+	*RESULTS*
+name	    first_name	  last_name	  date
+Mushi	    Arabella	  Figg		  2018-10-31T00:00:00.000Z
+Victoire    Argus	  Filch		  2018-11-05T00:00:00.000Z
+
+
 > Create a list of adopters who have not yet chosen a dog to adopt.
 
 	ANSWER:  SELECT adopters.*
@@ -73,6 +87,11 @@ JOIN c ON p.id = c.professor_id;
            	 LEFT OUTER JOIN dog_adoptions
            	 ON adopters.id= dog_adoptions.adopter_id
            	 WHERE dog_adoptions.adopter_id is NULL;
+
+	*RESULTS*
+id	first_name	last_name	address			phone_number
+1	Hermione	Granger		32 Granger's Street	676-464-7837
+2	Arabella	Figg		4 Wisteria Walk		843-228-5239
 
 
 > Lists of all cats and all dogs who have not been adopted.
@@ -87,7 +106,21 @@ JOIN c ON p.id = c.professor_id;
 		FROM dogs
 		LEFT OUTER JOIN dog_adoptions
 		ON dog_adoptions.dog_id = dogs.id
-		WHERE dog_adoptions.adopt
+		WHERE dog_adoptions.dog_id is NULL;
+
+	*RESULTS*
+Query #1 Execution time: 0ms
+name
+Seashell
+Nala
+Query #2 Execution time: 1ms
+name
+Boujee
+Munchkin
+Marley
+Lassie
+Marmaduke
+
 
 
 > The name of the person who adopted Rosco.
@@ -97,6 +130,11 @@ JOIN c ON p.id = c.professor_id;
 		JOIN dog_adoptions
 		ON adopters.id = dog_adoptions.adopter_id
 		WHERE dog_adoptions.dog_id = 10007;
+	
+	*RESULTS*
+
+first_name	last_name
+Argus		Filch
 
 9. Using this Library schema and data, write queries applying the following scenarios and include the results:
 
@@ -106,7 +144,16 @@ JOIN c ON p.id = c.professor_id;
 		FROM holds
 		JOIN patrons ON patrons.id = holds.patron_id
 		JOIN books ON books.isbn = holds.isbn
-		WHERE books.isbn = '9136884926'; 
+		WHERE books.isbn = '9136884926'
+		ORDER BY holds.rank;
+
+
+	*RESULTS*
+
+name		title
+Terry Boot	Advanced Potion-Making
+Cedric Diggory	Advanced Potion-Making
+
 
 > List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
 
@@ -115,5 +162,11 @@ JOIN c ON p.id = c.professor_id;
 		LEFT OUTER JOIN transactions ON patrons.id = transactions.patron_id
 		LEFT OUTER JOIN books ON books.isbn = transactions.isbn
 		WHERE transactions.checked_in_date is NULL
+
+	*RESULTS*
+	
+name		title
+Terry Boot	Advanced Potion-Making
+Cedric Diggory	Fantastic Beasts and Where to Find Them
 		
 		
