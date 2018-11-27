@@ -140,19 +140,19 @@ Argus		Filch
 
 > To determine if the library should buy more copies of a given book, please provide the names and position, in order, of all of the patrons with a hold (request for a book with all copies checked out) on "Advanced Potion-Making".
 
-	ANSWER: SELECT patrons.name, books.title
-		FROM holds
-		JOIN patrons ON patrons.id = holds.patron_id
-		JOIN books ON books.isbn = holds.isbn
-		WHERE books.isbn = '9136884926'
+	ANSWER: SELECT patrons.name, holds.rank
+		FROM patrons
+		JOIN holds ON patrons.id = holds.patron_id
+		WHERE holds.isbn = '9136884926'
 		ORDER BY holds.rank;
 
 
 	*RESULTS*
+name		rank
+Terry Boot	1
+Cedric Diggory	2
 
-name		title
-Terry Boot	Advanced Potion-Making
-Cedric Diggory	Advanced Potion-Making
+
 
 
 > List all of the library patrons. If they have one or more books checked out, list the books with the patrons.
@@ -161,12 +161,18 @@ Cedric Diggory	Advanced Potion-Making
 		FROM patrons
 		LEFT OUTER JOIN transactions ON patrons.id = transactions.patron_id
 		LEFT OUTER JOIN books ON books.isbn = transactions.isbn
-		WHERE transactions.checked_in_date is NULL
+		WHERE transactions.checked_out_date is NOT NULL
+		ORDER by patrons.name
 
 	*RESULTS*
 	
-name		title
-Terry Boot	Advanced Potion-Making
-Cedric Diggory	Fantastic Beasts and Where to Find Them
+name			title
+Cedric Diggory		Fantastic Beasts and Where to Find Them
+Cho Chang		Advanced Potion-Making
+Hermione Granger	Fantastic Beasts and Where to Find Them
+Hermione Granger	Hogwarts: A History
+Padma Patil		Fantastic Beasts and Where to Find Them
+Terry Boot		Advanced Potion-Making
+Terry Boot		Fantastic Beasts and Where to Find Them
 		
 		
